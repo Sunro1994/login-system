@@ -1,9 +1,10 @@
 package com.intern.authsystem.presentation.dto.response;
 
 import com.intern.authsystem.domain.constant.Role;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.Getter;
-
+@Schema(description = "회원가입 응답 DTO")
 public record SignUpResponse(String email,
                              String nickname,
                              Role role) {
