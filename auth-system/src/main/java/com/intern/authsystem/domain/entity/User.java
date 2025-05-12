@@ -2,10 +2,7 @@ package com.intern.authsystem.domain.entity;
 
 import com.intern.authsystem.common.BaseEntity;
 import com.intern.authsystem.domain.constant.Role;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class User extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name="user_email" , nullable = false)
@@ -26,6 +23,7 @@ public class User extends BaseEntity {
     private String password;
 
     @Column(name = "user_role", nullable = false)
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     @Column(name = "user_nickname" , nullable = false)
