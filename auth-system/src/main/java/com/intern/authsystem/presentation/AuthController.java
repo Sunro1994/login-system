@@ -26,7 +26,7 @@ public class AuthController {
 
     @Operation(summary = "회원가입", description = "사용자 계정을 등록합니다.")
     @ApiResponse(responseCode = "200", description = "회원가입 성공")
-    @PostMapping("/signup")
+    @PostMapping("/sign-up")
     public ResponseEntity<SignUpResponse> signup(@Valid @RequestBody SignUpRequest request) {
         return ResponseEntity.ok(authService.signup(request));
     }
