@@ -2,6 +2,7 @@ package com.intern.authsystem.common.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -47,6 +48,12 @@ public class GlobalExceptionHandler {
 
         ErrorResponse response = ErrorResponse.of("VALIDATION_ERROR", message);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<ErrorResponse> handleAccessDeniedException(AccessDeniedException e) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                             .body(ErrorResponse.of("ACCESS_DENIED", "관리자 권한이 필요한 요청입니다. 접근 권한이 없습니다."));
     }
 
     /**
